@@ -17,9 +17,10 @@ func Build() {
 	viper.SetConfigType("yaml")
 	viper.SetConfigName("keyhacks")
 
-	viper.AddConfigPath("/etc/")
-	viper.AddConfigPath("$HOME/.config/")
 	viper.AddConfigPath(".")
+	viper.AddConfigPath("$HOME/.config/")
+	viper.AddConfigPath("$GOPATH/src/github.com/audibleblink/kh/")
+	viper.AddConfigPath("/etc/")
 
 	err := viper.ReadInConfig()
 	if err != nil { // Handle errors reading the config file
