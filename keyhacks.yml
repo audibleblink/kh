@@ -12,3 +12,11 @@ slack-token:
   request:
     method: POST
     url: 'https://slack.com/api/auth.test?token=%s&pretty=1'
+  validator:
+    custom: true
+
+mailgun:
+  name: mailgun
+  request:
+    method: GET
+    url: 'https://api:%s@api.mailgun.net/v3/domains'
