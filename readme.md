@@ -1,4 +1,4 @@
-`kh` is a programatic way to check for the validity of API tokens or webhooks. The services against
+`kh` is a programmatic way to check for the validity of API tokens or webhooks. The services against
 which it is able to check originally came from the popular [keyhack](https://github.com/streaak/keyhacks#Slack-API-token)
 repo by [@streaak](https://github.com/streaak/).
 
@@ -36,8 +36,8 @@ slack-token:
 In the parameters where a token is to be interpolated, place a template symbol, `%s`, in place of
 the token value.
 
-In addition to the edits to the configuration YAML, users must add the subcommand to the `/cmd`
-folder in this repository's root. Users must also define what a validated response means. 
+In addition to editing the configuration YAML, users must add the subcommand to the `/cmd`
+folder in this repository's root. Users must also define what a validated response looks like. 
 
 ```go
 // each subcommand's init function must add the subcommand to the root cli command
@@ -59,4 +59,20 @@ func validateSlack(resp *http.Response) (ok bool, err error) {
 	ok = resp.Header["X-Oauth-Scopes"] != nil
 	return
 }
+```
+
+## Structure
+
+```
+├── cmd			# this is where new plugins go
+│   ├── cli.go		# main entry point logic for the CLI utility
+│   └── <more services here>
+├── go.mod
+├── go.sum
+├── keyhacks.yml	# tool configuration; add new service definitions here
+├── main.go		
+├── pkg
+│   └── keyhack
+│       └── keyhack.go	# core keyhack framework logic
+
 ```
