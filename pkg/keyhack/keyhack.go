@@ -20,8 +20,5 @@ func Check(service, token string) (ok bool, err error) {
 	}
 
 	ok, err = kh.Validate(token)
-	if err != nil {
-		return
-	}
 	return
 }

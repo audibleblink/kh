@@ -34,9 +34,6 @@ func (kh *KeyHack) Validate(token string) (ok bool, err error) {
 		return
 	}
 	ok, err = kh.Validator(res)
-	if err != nil {
-		return
-	}
 	return
 }
 
@@ -60,13 +57,19 @@ func curl(req *Request) (res *http.Response, err error) {
 // fillTemplate checks if string from the YAML configuration contains a format string
 // and fills it with a token if it does
 func fillTemplate(req *Request, token string) *Request {
+	newReq := &Request{
+		Method:  req.Method,
+		URL:     req.URL,
+		Headers: req.Headers,
+	}
+
 	if strings.Contains(req.URL, "%s") {
-		req.URL = fmt.Sprintf(req.URL, token)
+		newReq.URL = fmt.Sprintf(req.URL, token)
 	}
 	for k, v := range req.Headers {
 		if strings.Contains(req.Headers[k], "%s") {
-			req.Headers[k] = fmt.Sprintf(v, token)
+			newReq.Headers[k] = fmt.Sprintf(v, token)
 		}
 	}
-	return req
+	return newReq
 }

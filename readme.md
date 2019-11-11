@@ -7,6 +7,16 @@ repo by [@streaak](https://github.com/streaak/).
 ```bash
 $ kh github-token XXXXXXXXXXXXXXXXXXXXXXXXX
 => XXXXXXXXXXXXXXXXXXXXXXXXX
+
+$ ./my-custom-token-scanner | kh slack-token - | tee -a valid_slack_tokens.txt
+=> WWWWWWWWWWWWWWWWWWWWWWWWW
+=> YYYYYYYYYYYYYYYYYYYYYYYYY
+=> ZZZZZZZZZZZZZZZZZZZZZZZZZ
+
+$ xargs kh slack-token < maybe_tokens.txt| tee -a valid_slack_tokens.txt
+=> WWWWWWWWWWWWWWWWWWWWWWWWW
+=> YYYYYYYYYYYYYYYYYYYYYYYYY
+=> ZZZZZZZZZZZZZZZZZZZZZZZZZ
 ```
 
 If the token is valid, `kh` will print the token and return a 0 status to bash. If the token is

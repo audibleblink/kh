@@ -11,6 +11,8 @@ import (
 // service to validate against based on user input.
 var Registry = make(map[string]*t.KeyHack)
 
+// Build esatblishes a configuration file search order and parses the YAML file
+// into the tool's registry full of KeyHacks
 func Build() {
 	viper.SetConfigType("yaml")
 	viper.SetConfigName("keyhacks")
