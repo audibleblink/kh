@@ -21,11 +21,13 @@ func init() {
 	}
 }
 
-var Registry = make(map[string]*KeyHack)
+// Registry holds the Unmarshaled YAML configs where the CLI can dynamically choose which
+// service to validate against based on user input.
+var Registry = make(map[string]*keyHack)
 
 type validator func(*http.Response) (bool, error)
 
-type KeyHack struct {
+type keyHack struct {
 	Name      string
 	Request   request
 	Validator validator
@@ -55,7 +57,7 @@ func Check(service, token string) (ok bool, err error) {
 
 // Validate will take the configured properties and use them to send a request to
 // the service whose token is attempting to be validated
-func (kh *KeyHack) Validate(token string) (ok bool, err error) {
+func (kh *keyHack) Validate(token string) (ok bool, err error) {
 	req := fillTemplate(&kh.Request, token)
 	res, err := curl(req)
 	if err != nil {

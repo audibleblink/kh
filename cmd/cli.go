@@ -10,10 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "kh",
-	Short: "KeyHacks validates tokens for services",
-	// Run: func(cmd *cobra.Command, args []string) {
-	// 	// Do Stuff Here
-	// },
+	Short: "Validate API tokens/webhooks for various services",
 }
 
 func Execute() {
@@ -21,7 +18,6 @@ func Execute() {
 }
 
 func newCommand(name, desc string) *cobra.Command {
-
 	return &cobra.Command{
 		Use:   name,
 		Short: desc,
