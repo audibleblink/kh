@@ -3,7 +3,7 @@ package cli
 import (
 	"net/http"
 
-	"github.com/audibleblink/kh/pkg/keyhack"
+	"github.com/audibleblink/kh/pkg/registry"
 )
 
 // each subcommand's init function must add the subcommand to the root command
@@ -11,7 +11,7 @@ import (
 // what a good http response looks like, and thus reports successful authentication
 func init() {
 	rootCmd.AddCommand(githubTokenCmd)
-	keyhack.Registry["github-token"].Validator = validateGithub
+	registry.Registry["github-token"].Validator = validateGithub
 }
 
 // ensure the command name matches the entry in the YAML file
