@@ -1,0 +1,14 @@
+---
+github-token:
+  name: github-token
+  request:
+    method: GET
+    url: 'https://api.github.com/users'
+    headers:
+      Authorization: "token %s"
+
+slack-token:
+  name: slack-token
+  request:
+    method: POST
+    url: 'https://slack.com/api/auth.test?token=%s&pretty=1'
