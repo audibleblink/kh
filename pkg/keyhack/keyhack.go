@@ -3,7 +3,6 @@ package keyhack
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 
@@ -20,7 +19,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	registerCommands()
 }
 
 var Registry = make(map[string]*KeyHack)
@@ -58,7 +56,6 @@ func Check(service, token string) (ok bool, err error) {
 // Validate will take the configured properties and use them to send a request to
 // the service whose token is attempting to be validated
 func (kh *KeyHack) Validate(token string) (ok bool, err error) {
-	log.Printf("Validating: %s", kh.Name)
 	req := fillTemplate(&kh.Request, token)
 	res, err := curl(req)
 	if err != nil {
