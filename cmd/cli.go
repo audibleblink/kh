@@ -69,7 +69,9 @@ func newCommand(name, desc string) *cobra.Command {
 			}
 			if ok {
 				cmd.Println(token)
+				return
 			}
+			os.Exit(1)
 		},
 	}
 }

@@ -11,7 +11,7 @@ import (
 // what a good http response looks like
 func init() {
 	rootCmd.AddCommand(slackTokenCmd)
-	registry.Registry["slack-token"].Validator = validateSlack
+	registry.Registry["slack-token"].Validator.Fn = validateSlack
 }
 
 // ensure the command name matches the entry in the YAML file

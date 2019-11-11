@@ -8,7 +8,13 @@ import (
 
 // Validator is a function that users define which establishes what a valid
 // authenticated HTTP response looks like from a given service
-type Validator func(*http.Response) (bool, error)
+type validator func(*http.Response) (bool, error)
+
+type Validator struct {
+	Custom bool
+	Status int
+	Fn     validator
+}
 
 // KeyHack represents an API service definition that's read in from the config YAML
 type KeyHack struct {
@@ -33,7 +39,17 @@ func (kh *KeyHack) Validate(token string) (ok bool, err error) {
 	if err != nil {
 		return
 	}
-	ok, err = kh.Validator(res)
+
+	if !kh.Validator.Custom {
+		kh.Validator.Fn = defaultValidator
+	}
+
+	ok, err = kh.Validator.Fn(res)
+	return
+}
+
+func defaultValidator(resp *http.Response) (ok bool, err error) {
+	ok = resp.StatusCode == 200
 	return
 }
 
