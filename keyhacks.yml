@@ -20,3 +20,9 @@ mailgun:
   request:
     method: GET
     url: 'https://api:%s@api.mailgun.net/v3/domains'
+
+twitter:
+  name: twitter
+  request:
+    method: POST
+    url: 'https://%s@api.twitter.com/oauth2/token?grant_type=client_credentials'
