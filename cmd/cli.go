@@ -3,6 +3,7 @@ package cli
 import (
 	"bufio"
 	"os"
+	"strings"
 
 	"github.com/audibleblink/kh/pkg/keyhack"
 	"github.com/spf13/cobra"
@@ -18,10 +19,13 @@ func Execute() {
 }
 
 func newCommand(name, desc string) *cobra.Command {
+	usage := strings.Join([]string{name, desc}, " ")
 	return &cobra.Command{
-		Use:   name,
-		Short: desc,
-		Args:  cobra.MinimumNArgs(1),
+		DisableFlagsInUseLine: true,
+		DisableFlagParsing:    true,
+		Use:                   usage,
+		Short:                 desc,
+		Args:                  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 
 			var (

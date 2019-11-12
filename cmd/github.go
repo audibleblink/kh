@@ -1,6 +1,6 @@
 package cli
 
 func init() {
-	githubTokenCmd := newCommand("github-token", "Checks a token against the GitHub API")
+	githubTokenCmd := newCommand("github-token", "<token>")
 	rootCmd.AddCommand(githubTokenCmd)
 }

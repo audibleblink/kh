@@ -15,7 +15,7 @@ func init() {
 }
 
 // ensure the command name matches the entry in the YAML file
-var slackTokenCmd = newCommand("slack-token", "Checks a token against the Slack API")
+var slackTokenCmd = newCommand("slack-token", "<token>")
 
 // validator functions define what a successful authentication means
 // based on the http response of the API call issued by keyhacks

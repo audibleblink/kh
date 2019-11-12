@@ -1,6 +1,6 @@
 package cli
 
 func init() {
-	mailgunCmd := newCommand("mailgun", "Checks a token against the Mailgun API")
+	mailgunCmd := newCommand("mailgun", "<token>")
 	rootCmd.AddCommand(mailgunCmd)
 }
