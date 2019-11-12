@@ -1,4 +1,16 @@
 ---
+
+# Demo Service With All Params
+# sass-api:
+#   name: sass-api
+#   request:
+#     method: POST [REQUIRED]
+#     url: 'https://sass-api.io/api/auth' [REQUIRED]
+#     headers:
+#       Authorization: Bearer %s
+#   validator: [REQUIRED if 200/40x http status is not indicative of success/failure]
+#     custom: true
+
 github-token:
   name: github-token
   request:
