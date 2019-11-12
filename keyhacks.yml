@@ -38,3 +38,11 @@ twitter:
   request:
     method: POST
     url: 'https://%s@api.twitter.com/oauth2/token?grant_type=client_credentials'
+
+twitter-bearer:
+  name: twitter-bearer
+  request:
+    method: GET
+    url: 'https://api.twitter.com/1.1/trends/available.json'
+    headers:
+      Authorization: Bearer %s
