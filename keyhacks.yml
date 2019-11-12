@@ -11,6 +11,12 @@
 #   validator: [REQUIRED if 200/40x http status is not indicative of success/failure]
 #     custom: true
 
+github-oauth:
+  name: github-oauth
+  request:
+    method: GET
+    url: 'https://%s@api.github.com/feeds'
+
 github-token:
   name: github-token
   request:
