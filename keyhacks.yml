@@ -52,3 +52,12 @@ twitter-bearer:
     url: 'https://api.twitter.com/1.1/trends/available.json'
     headers:
       Authorization: Bearer %s
+
+discord:
+  name: discord
+  request:
+    method: GET
+    url: 'https://discordapp.com/api/users/@me'
+    headers:
+      Authorization: "Bot %s"
+
