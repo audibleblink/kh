@@ -5,8 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/audibleblink/kh/pkg/keyhack"
 	"github.com/spf13/cobra"
+
+	"github.com/audibleblink/kh/pkg/keyhack"
 )
 
 var rootCmd = &cobra.Command{
@@ -14,20 +15,32 @@ var rootCmd = &cobra.Command{
 	Short: "Validate API tokens/webhooks for various services",
 }
 
+// serviceCommands tracks all registered service commands
+var serviceCommands []*cobra.Command
+
+// Execute runs the CLI application
 func Execute() {
-	rootCmd.Execute()
+	// Add all registered service commands to the root command
+	for _, cmd := range serviceCommands {
+		rootCmd.AddCommand(cmd)
+	}
+
+	// Let Cobra handle command execution and errors
+	if err := rootCmd.Execute(); err != nil {
+		os.Exit(1)
+	}
 }
 
-func newCommand(name, desc string) *cobra.Command {
+// NewServiceCommand creates a new cobra command for a service
+func NewServiceCommand(name, desc string) *cobra.Command {
 	usage := strings.Join([]string{name, desc}, " ")
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		DisableFlagsInUseLine: true,
 		DisableFlagParsing:    true,
 		Use:                   usage,
 		Short:                 desc,
 		Args:                  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-
 			var (
 				ok  bool
 				err error
@@ -78,4 +91,9 @@ func newCommand(name, desc string) *cobra.Command {
 			os.Exit(1)
 		},
 	}
+
+	// Register the command in the registry
+	serviceCommands = append(serviceCommands, cmd)
+
+	return cmd
 }

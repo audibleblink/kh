@@ -16,7 +16,6 @@ github-oauth:
   request:
     method: GET
     url: 'https://%s@api.github.com/feeds'
-
 github-token:
   name: github-token
   request:
@@ -24,7 +23,6 @@ github-token:
     url: 'https://api.github.com/users'
     headers:
       Authorization: "token %s"
-
 slack-token:
   name: slack-token
   request:
@@ -32,19 +30,16 @@ slack-token:
     url: 'https://slack.com/api/auth.test?token=%s&pretty=1'
   validator:
     custom: true
-
 mailgun:
   name: mailgun
   request:
     method: GET
     url: 'https://api:%s@api.mailgun.net/v3/domains'
-
 twitter:
   name: twitter
   request:
     method: POST
     url: 'https://%s@api.twitter.com/oauth2/token?grant_type=client_credentials'
-
 twitter-bearer:
   name: twitter-bearer
   request:
@@ -52,7 +47,6 @@ twitter-bearer:
     url: 'https://api.twitter.com/1.1/trends/available.json'
     headers:
       Authorization: Bearer %s
-
 discord:
   name: discord
   request:
@@ -60,4 +54,3 @@ discord:
     url: 'https://discordapp.com/api/users/@me'
     headers:
       Authorization: "Bot %s"
-
