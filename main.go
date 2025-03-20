@@ -15,7 +15,7 @@ import (
 var configData []byte
 
 func init() {
-	// Initialize the keyhack registry lookup
+	// Give pkg/keyhack access to pkg/registry
 	keyhack.Registry.GetService = registry.GetService
 }
 

@@ -3,6 +3,7 @@ package keyhack
 import (
 	"context"
 	"fmt"
+	"maps"
 	"net/http"
 	"strings"
 	"time"
@@ -24,7 +25,7 @@ func Check(serviceName, token string) (bool, error) {
 	if err != nil {
 		return false, fmt.Errorf("validation for service %q failed: %w", serviceName, err)
 	}
-	
+
 	return ok, nil
 }
 
@@ -94,9 +95,7 @@ func (kh *KeyHack) prepareRequest(token string) *Request {
 	}
 
 	// Copy headers to avoid modifying original
-	for k, v := range kh.Headers {
-		newReq.Headers[k] = v
-	}
+	maps.Copy(newReq.Headers, kh.Headers)
 
 	// Fill URL template
 	if strings.Contains(kh.URL, "%s") {
